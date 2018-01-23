@@ -1,0 +1,16 @@
+.article-card .el-card__body {
+  padding: 1rem !important;
+}
+.el-button {
+  margin-left: 0 !important;
+  margin-right: 5px !important;
+  margin-bottom: 5px;
+}
+.pagination {
+  margin-top: 2rem;
+  text-align: center;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
