@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Card, Button, Layout, Pagination } from 'element-react'
 
@@ -24,22 +25,24 @@ class TopNavbar extends Component {
         <h2>{this.props.title}</h2>
         <hr />
         {this.props.data.map((e) => (
-          <Card className='article-card' key={this.props.data.indexOf(e)}>
-            <Layout.Row gutter='20'>
-              <Layout.Col span='6'>
-                <img src={logo} alt='logo' />
-              </Layout.Col>
-              <Layout.Col span='18'>
-                <p>{e.title}</p>
-                <p>{e.brief}</p>
-                <p>{e.author}&emsp;{e.time}</p>
-                <p>
-                  <Button type='primary' size='mini'>热度：92</Button>
-                  <Button type='warning' size='mini'>传播路径分析</Button>
-                </p>
-              </Layout.Col>
-            </Layout.Row>
-          </Card>
+          <Link to={'article/' + e.title} key={this.props.data.indexOf(e)}>
+            <Card className='article-card'>
+              <Layout.Row gutter='20'>
+                <Layout.Col span='6'>
+                  <img src={logo} alt='logo' />
+                </Layout.Col>
+                <Layout.Col span='18'>
+                  <p>{e.title}</p>
+                  <p>{e.brief}</p>
+                  <p>{e.author}&emsp;{e.time}</p>
+                  <p>
+                    <Button type='primary' size='mini'>热度：92</Button>
+                    <Button type='warning' size='mini'>传播路径分析</Button>
+                  </p>
+                </Layout.Col>
+              </Layout.Row>
+            </Card>
+          </Link>
         ))}
         <div className='pagination'>
           <Pagination layout='total, prev, pager, next' total={1000} />

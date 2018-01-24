@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import echarts from 'echarts/lib/echarts'
 import 'echarts-wordcloud'
+import 'echarts/lib/component/tooltip'
 
 class WordCloud extends Component {
   // constructor (props) {

@@ -4,7 +4,7 @@ import echarts from 'echarts/lib/echarts'
 import 'echarts/lib/chart/radar'
 import 'echarts/lib/component/tooltip'
 
-class RadarChart extends Component {
+class ArticleHotRadarChart extends Component {
   // constructor (props) {
   //   super(props)
   // },
@@ -24,26 +24,21 @@ class RadarChart extends Component {
         },
         radius: '80%',
         indicator: [
-          {name: '销售（sales）', max: 6500},
-          {name: '管理（Administration）', max: 16000},
-          {name: '信息技术（Information Techology）', max: 30000},
-          {name: '客服（Customer Support）', max: 38000},
-          {name: '研发（Development）', max: 52000},
-          {name: '市场（Marketing）', max: 25000}
+          {name: '阅读量', max: 6500},
+          {name: '转发量', max: 16000},
+          {name: '点赞量', max: 30000},
+          {name: '覆盖用户数', max: 38000},
+          {name: '转发深度', max: 10}
         ]
       },
       series: [{
-        name: '预算 vs 开销（Budget vs spending）',
+        name: '热度分析图',
         type: 'radar',
         // areaStyle: {normal: {}},
         data: [
           {
-            value: [4300, 10000, 28000, 35000, 50000, 19000],
-            name: '预算分配（Allocated Budget）'
-          },
-          {
-            value: [5000, 14000, 28000, 31000, 42000, 21000],
-            name: '实际开销（Actual Spending）'
+            value: [4300, 10000, 18000, 15000, 5],
+            name: '热度分析'
           }
         ]
       }]
@@ -52,13 +47,13 @@ class RadarChart extends Component {
 
   render () {
     return (
-      <div ref={(chartDom) => { this.chartDom = chartDom }} style={{'height': '400px'}} />
+      <div ref={(chartDom) => { this.chartDom = chartDom }} style={{'height': this.props.height || '400px'}} />
     )
   }
 }
 
-// RadarChart.propTypes = {
-//   data: PropTypes.array
-// }
+ArticleHotRadarChart.propTypes = {
+  height: PropTypes.string
+}
 
-export default RadarChart
+export default ArticleHotRadarChart

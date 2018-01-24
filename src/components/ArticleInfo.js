@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Card, Layout } from 'element-react'
+import { Card } from 'element-react'
 
-class NumberCard extends Component {
+class ArticleInfo extends Component {
   // constructor (props) {
   //   super(props)
   // }
@@ -11,18 +11,17 @@ class NumberCard extends Component {
     return (
       <Card className='article-card'>
         <p>{this.props.title}</p>
-        <p>{this.props.number}</p>
-        <p>{this.props.percentage}</p>
+        <p>{this.props.brief}</p>
       </Card>
     )
   }
 
 }
 
-NumberCard.propTypes = {
+ArticleInfo.propTypes = {
   title: PropTypes.string,
-  number: PropTypes.string,
+  brief: PropTypes.string,
   percentage: PropTypes.string
 }
 
-export default NumberCard
+export default ArticleInfo

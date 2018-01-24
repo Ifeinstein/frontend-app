@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Card, Layout } from 'element-react'
+import { Card } from 'element-react'
 
 class NumberCard extends Component {
   // constructor (props) {
@@ -16,7 +16,6 @@ class NumberCard extends Component {
       </Card>
     )
   }
-
 }
 
 NumberCard.propTypes = {

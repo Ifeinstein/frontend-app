@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import echarts from 'echarts/lib/echarts'
 import 'echarts/lib/chart/line'
+import 'echarts/lib/component/tooltip'
 
 class WordCloud extends Component {
   // constructor (props) {
@@ -15,6 +16,7 @@ class WordCloud extends Component {
         top: '3%',
         bottom: '12%'
       },
+      tooltip: {},
       xAxis: {
         type: 'category',
         data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -31,13 +33,13 @@ class WordCloud extends Component {
 
   render () {
     return (
-      <div ref={(chartDom) => { this.chartDom = chartDom }} style={{'height': '200px'}} />
+      <div ref={(chartDom) => { this.chartDom = chartDom }} style={{'height': this.props.height || '200px'}} />
     )
   }
 }
 
-// WordCloud.propTypes = {
-//   data: PropTypes.array
-// }
+WordCloud.propTypes = {
+  height: PropTypes.string
+}
 
 export default WordCloud

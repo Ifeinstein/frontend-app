@@ -44,7 +44,6 @@ class ArticlePathTreeChart extends Component {
         name: '三国演义',
         type: 'graph',
         layout: 'force',
-
         force: {
           repulsion: 300
         },
@@ -345,10 +344,8 @@ class ArticlePathTreeChart extends Component {
         roam: true,
         label: {
           normal: {
-
             show: true,
-            position: 'top',
-
+            position: 'top'
           }
         },
         lineStyle: {
