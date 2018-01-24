@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { Layout } from 'element-react'
+import { Layout, Tabs } from 'element-react'
+
+import ArticleInfo from '../components/ArticleInfo'
 
 class App extends Component {
   constructor () {
@@ -19,11 +21,19 @@ class App extends Component {
   render () {
     return (
       <div>
+        <br />
         <Layout.Row>
           <Layout.Col span='24'>
-            123123
+            <ArticleInfo title='标题' brief='内容摘要' />
           </Layout.Col>
         </Layout.Row>
+        <br />
+        <Tabs type='border-card' activeName='1'>
+          <Tabs.Pane label='用户管理' name='1'>用户管理</Tabs.Pane>
+          <Tabs.Pane label='配置管理' name='2'>配置管理</Tabs.Pane>
+          <Tabs.Pane label='角色管理' name='3'>角色管理</Tabs.Pane>
+          <Tabs.Pane label='定时补偿任务' name='4'>定时补偿任务</Tabs.Pane>
+        </Tabs>
       </div>
 
     )
