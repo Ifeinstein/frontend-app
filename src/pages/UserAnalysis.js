@@ -80,8 +80,8 @@ class Page extends Component {
   }
 
   getTabChart () {
-    this.refs.treeChart.showChart()
-    this.refs.graphChart.showChart()
+    // this.refs.treeChart.showChart()
+    // this.refs.graphChart.showChart()
   }
 
   render () {
@@ -95,51 +95,11 @@ class Page extends Component {
         </Layout.Row>
         <br />
         <Tabs type='border-card' activeName='1' onTabClick={this.getTabChart}>
-          <Tabs.Pane label='热度分析' name='1'>
-            <Layout.Col span='10'>
-              <ArticleHotInfo coverNum={this.state.hotInfo.coverNum} depth={this.state.hotInfo.depth}
-                forwardNum={this.state.hotInfo.forwardNum} hotNum={this.state.hotInfo.hotNum}
-                readNum={this.state.hotInfo.readNum} thumbsNum={this.state.hotInfo.thumbsNum} />
-            </Layout.Col>
-            <Layout.Col span='14'>
-              <ArticleHotRadarChart data={this.state.hotInfo} />
-            </Layout.Col>
-            <Layout.Col span='24'>
-              <h2>热度趋势曲线</h2>
-              <LineChart height='400px' />
-            </Layout.Col>
+          <Tabs.Pane label='活跃度分析' name='1'>123123
           </Tabs.Pane>
-          <Tabs.Pane label='传播路径分析' name='2'>
-            <Layout.Row>
-              <Layout.Col span='12'>
-                <h2>传播路径</h2>
-                <ArticlePathTreeChart ref='treeChart' />
-              </Layout.Col>
-              <Layout.Col span='12'>
-                <h2>关键传播路径</h2>
-                <Table
-                  style={{width: '100%'}}
-                  columns={this.state.treeTable.columns}
-                  data={this.state.treeTable.data}
-                  border
-                />
-              </Layout.Col>
-            </Layout.Row>
-            <Layout.Row>
-              <Layout.Col span='12'>
-                <h2>传播节点</h2>
-                <ArticleNodeGraphChart ref='graphChart' />
-              </Layout.Col>
-              <Layout.Col span='12'>
-                <h2>关键传播节点</h2>
-                <Table
-                  style={{width: '100%'}}
-                  columns={this.state.treeTable.columns}
-                  data={this.state.treeTable.data}
-                  border
-                />
-              </Layout.Col>
-            </Layout.Row>
+          <Tabs.Pane label='传播影响力分析' name='2'>123123
+          </Tabs.Pane>
+          <Tabs.Pane label='用户行为日志' name='3'>123123
           </Tabs.Pane>
         </Tabs>
       </div>

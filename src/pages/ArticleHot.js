@@ -5,7 +5,7 @@ import WordCloud from '../components/WordCloud'
 import NumberCard from '../components/NumberCard'
 import LineChart from '../components/LineChart'
 
-class App extends Component {
+class Page extends Component {
   constructor () {
     super()
 
@@ -86,4 +86,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default Page

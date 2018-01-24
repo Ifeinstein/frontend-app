@@ -7,9 +7,12 @@ import 'element-theme-default'
 import './index.css'
 
 import Home from './pages/Home'
-import HotArticle from './pages/HotArticle'
+import ArticleHot from './pages/ArticleHot'
 import ArticleList from './pages/ArticleListIndex'
 import ArticleAnalysis from './pages/ArticleAnalysis'
+import UserVip from './pages/UserVip'
+import UserList from './pages/UserListIndex'
+import UserAnalysis from './pages/UserAnalysis'
 
 import registerServiceWorker from './registerServiceWorker'
 
@@ -20,16 +23,17 @@ ReactDOM.render((
         <NavLink to='/' exact activeClassName='selected'><Menu.Item index='1'>首页</Menu.Item></NavLink>
         <NavLink to='/hot-article' activeClassName='selected'><Menu.Item index='2'>热门内容榜单</Menu.Item></NavLink>
         <NavLink to='/article' activeClassName='selected'><Menu.Item index='3'>内容分析</Menu.Item></NavLink>
-        <Menu.Item index='4'>重点用户榜单</Menu.Item>
-        <Menu.Item index='5'>用户分析</Menu.Item>
+        <NavLink to='/vip-user' activeClassName='selected'><Menu.Item index='4'>重点用户榜单</Menu.Item></NavLink>
+        <NavLink to='/user' activeClassName='selected'><Menu.Item index='5'>用户分析</Menu.Item></NavLink>
       </Menu>
       <div className='container'>
         <Route exact path='/' component={Home} />
-        <Route path='/hot-article' component={HotArticle} />
+        <Route path='/hot-article' component={ArticleHot} />
         <Route exact path='/article' component={ArticleList} />
         <Route path='/article/:id' component={ArticleAnalysis} />
-        {/* <Route path='/VipUser' component={VipUser} /> */}
-        {/* <Route path='/UserList' component={UserList} /> */}
+        <Route path='/vip-user' component={UserVip} />
+        <Route exact path='/user' component={UserList} />
+        <Route path='/user/:id' component={UserAnalysis} />
       </div>
       <br />
     </div>

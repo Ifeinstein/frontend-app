@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Card, Button, Layout, Pagination } from 'element-react'
 
@@ -24,22 +25,24 @@ class TopNavbar extends Component {
         <h2>{this.props.title}</h2>
         <hr />
         {this.props.data.map((e) => (
-          <Card className='user-card' key={this.props.data.indexOf(e)}>
-            <Layout.Row gutter='20'>
-              <Layout.Col span='6'>
-                <img src={logo} alt='logo' />
-              </Layout.Col>
-              <Layout.Col span='18'>
-                <p>{e.name}</p>
-                <p>{e.time}</p>
-                <div>
-                  <Button type='primary' size='mini'>活跃度:92</Button>
-                  <Button type='primary' size='mini'>影响力:92</Button>
-                  <Button type='primary' size='mini'>传播行为分析</Button>
-                </div>
-              </Layout.Col>
-            </Layout.Row>
-          </Card>
+          <Link to={'user/' + e.name} key={this.props.data.indexOf(e)}>
+            <Card className='user-card'>
+              <Layout.Row gutter='20'>
+                <Layout.Col span='6'>
+                  <img src={logo} alt='logo' />
+                </Layout.Col>
+                <Layout.Col span='18'>
+                  <p>{e.name}</p>
+                  <p>{e.time}</p>
+                  <div>
+                    <Button type='primary' size='mini'>活跃度:92</Button>
+                    <Button type='primary' size='mini'>影响力:92</Button>
+                    <Button type='primary' size='mini'>传播行为分析</Button>
+                  </div>
+                </Layout.Col>
+              </Layout.Row>
+            </Card>
+          </Link>
         ))}
         <div className='pagination'>
           <Pagination layout='prev, pager, next' total={50} small />
@@ -47,7 +50,6 @@ class TopNavbar extends Component {
       </div>
     )
   }
-
 }
 
 TopNavbar.propTypes = {

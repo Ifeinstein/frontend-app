@@ -3,7 +3,7 @@ import { Layout } from 'element-react'
 import ArticleList from '../components/ArticleList'
 import UserList from '../components/UserList'
 
-class App extends Component {
+class Page extends Component {
   constructor () {
     super()
     this.state = {
@@ -67,4 +67,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default Page
