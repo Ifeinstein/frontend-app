@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Card } from 'element-react'
 
-class ArticleInfo extends Component {
+class Info extends Component {
   // constructor (props) {
   //   super(props)
   // }
@@ -17,9 +17,9 @@ class ArticleInfo extends Component {
   }
 }
 
-ArticleInfo.propTypes = {
+Info.propTypes = {
   title: PropTypes.string,
-  brief: PropTypes.string,
+  brief: PropTypes.string
 }
 
-export default ArticleInfo
+export default Info

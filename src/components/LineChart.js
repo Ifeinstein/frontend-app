@@ -9,8 +9,8 @@ class WordCloud extends Component {
   //   super(props)
   // },
   componentDidMount () {
-    let lineChart = echarts.init(this.chartDom)
-    lineChart.setOption({
+    this.myChart = echarts.init(this.chartDom)
+    this.myChart.setOption({
       grid: {
         right: '5%',
         top: '3%',
@@ -29,6 +29,10 @@ class WordCloud extends Component {
         type: 'line'
       }]
     })
+  }
+
+  resizeChart () {
+    this.myChart.resize()
   }
 
   render () {
