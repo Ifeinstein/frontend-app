@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { Layout } from 'element-react'
 import UserList from '../components/UserList'
-import UserLocalMapChart from '../components/UserLocalMapChart'
-import UserLocalBarChart from '../components/UserLocalBarChart'
+import UserMapScatterBarChart from '../components/UserMapScatterBarChart'
 import UserNumberBarChart from '../components/UserNumberBarChart'
 
 class Page extends Component {
@@ -33,18 +32,15 @@ class Page extends Component {
             <UserList title={this.state.userList.title} data={this.state.userList.data} />
           </Layout.Col>
         </Layout.Row>
-        <Layout.Row gutter='20'>
-          <h2>用户地域分布</h2>
-          <hr />
-          <Layout.Col span='12'>
-            <UserLocalMapChart height='400px' />
-          </Layout.Col>
-          <Layout.Col span='12'>
-            <UserLocalBarChart height='400px' />
-          </Layout.Col>
-          <h2>用户数量变化趋势</h2>
-          <hr />
+        <Layout.Row>
           <Layout.Col span='24'>
+            <h2>用户地域分布</h2>
+            <hr />
+            <UserMapScatterBarChart height='600px' />
+          </Layout.Col>
+          <Layout.Col span='24'>
+            <h2>用户数量变化趋势</h2>
+            <hr />
             <UserNumberBarChart height='400px' />
           </Layout.Col>
         </Layout.Row>
