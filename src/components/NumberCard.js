@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Card } from 'element-react'
 
+import './NumberCard.css'
+
 class NumberCard extends Component {
   // constructor (props) {
   //   super(props)
@@ -9,10 +11,10 @@ class NumberCard extends Component {
 
   render () {
     return (
-      <Card>
-        <p>{this.props.title}</p>
-        <p>{this.props.number}</p>
-        <p>{this.props.percentage}</p>
+      <Card className='number-card'>
+        <p className='title'>{this.props.title}</p>
+        <p className='number'>{this.props.number}</p>
+        <p className='percentage'>{this.props.percentage}</p>
       </Card>
     )
   }

@@ -1,9 +1,25 @@
+.user-card {
+  margin: 0.5rem 0;
+}
 .user-card .el-card__body {
   padding: 0.5rem !important;
 }
+.user-card .el-card__body .user-pic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-card .el-card__body .user-pic img {
+  width: 100%;
+}
+.user-card .el-card__body .name {
+  font-weight: bolder;
+  font-size: 1.1rem;
+}
+.user-card .el-card__body p {
+  margin-bottom: 0;
+}
 .el-button {
-  margin-left: 0 !important;
-  margin-right: 5px !important;
   margin-bottom: 5px;
 }
 .pagination {

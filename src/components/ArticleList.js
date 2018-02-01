@@ -10,12 +10,12 @@ class TopNavbar extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      pageInfo: {
-        total: 400,
-        pageSizes: [100, 200, 300, 400],
-        pageSize: 20,
-        currentPage: 5
-      }
+      // pageInfo: {
+      //   total: 400,
+      //   pageSizes: [100, 200, 300, 400],
+      //   pageSize: 20,
+      //   currentPage: 5
+      // }
     }
   }
 
@@ -27,26 +27,29 @@ class TopNavbar extends Component {
         {this.props.data.map((e) => (
           <Link to={'article/' + e.title} key={this.props.data.indexOf(e)}>
             <Card className='article-card'>
-              <Layout.Row gutter='20'>
-                <Layout.Col span='6'>
+              <Layout.Row type='flex' gutter='20'>
+                <Layout.Col className='article-pic' span='6'>
                   <img src={logo} alt='logo' />
                 </Layout.Col>
-                <Layout.Col span='18'>
-                  <p>{e.title}</p>
-                  <p>{e.brief}</p>
-                  <p>{e.author}&emsp;{e.time}</p>
-                  <p>
+                <Layout.Col className='article-content' span='18'>
+                  <p className='title'>{e.title}<span className='info'>&emsp;{e.author}&emsp;{e.time}</span></p>
+                  <p className='brief'>{e.brief}</p>
+
+                  <div>
                     <Button type='primary' size='mini'>热度：92</Button>
                     <Button type='warning' size='mini'>传播路径分析</Button>
-                  </p>
+                  </div>
                 </Layout.Col>
               </Layout.Row>
             </Card>
           </Link>
         ))}
-        <div className='pagination'>
-          <Pagination layout='total, prev, pager, next' total={1000} />
-        </div>
+        {this.state.pageInfo ? (
+          <div className='pagination'>
+            <Pagination layout='total, prev, pager, next' total={1000} />
+          </div>
+        ) : ''}
+
       </div>
     )
   }

@@ -31,7 +31,7 @@ class Page extends Component {
   render () {
     return (
       <Layout.Row>
-        <Layout.Col span='24'>
+        <Layout.Col span='8'>
           <UserList title={this.state.userList.title} data={this.state.userList.data} />
         </Layout.Col>
       </Layout.Row>

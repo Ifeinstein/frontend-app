@@ -28,7 +28,7 @@ class Page extends Component {
     return (
       <div>
         <Layout.Row>
-          <Layout.Col span='24'>
+          <Layout.Col span='8'>
             <UserList title={this.state.userList.title} data={this.state.userList.data} />
           </Layout.Col>
         </Layout.Row>
@@ -41,7 +41,7 @@ class Page extends Component {
           <Layout.Col span='24'>
             <h2>用户数量变化趋势</h2>
             <hr />
-            <UserNumberBarChart height='400px' />
+            <UserNumberBarChart height='600px' />
           </Layout.Col>
         </Layout.Row>
       </div>

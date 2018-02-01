@@ -1,9 +1,28 @@
+.article-card {
+  margin: 0.5rem 0;
+}
 .article-card .el-card__body {
-  padding: 1rem !important;
+  padding: 0.5rem !important;
+}
+.article-card .el-card__body .article-pic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.article-card .el-card__body .article-pic img {
+  width: 100%;
+  max-width: 140px;
+}
+.article-card .el-card__body .title {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.article-card .el-card__body .info {
+  color: #000 !important;
+  font-weight: normal;
+  font-size: 0.5rem;
 }
 .el-button {
-  margin-left: 0 !important;
-  margin-right: 5px !important;
   margin-bottom: 5px;
 }
 .pagination {

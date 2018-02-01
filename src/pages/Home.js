@@ -25,6 +25,11 @@ class Page extends Component {
           author: '迈德医疗',
           time: '2017-12-04 20:57:58'
         }, {
+          title: '糖尿病大时代4',
+          brief: '近日,国际糖尿病联盟(IDF)发布了全球第八版糖尿病地图.根据IDF数据显示,全球糖尿病成人患者达4.25亿',
+          author: '迈德医疗',
+          time: '2017-12-04 20:57:58'
+        }, {
           title: '糖尿病大时代5',
           brief: '近日,国际糖尿病联盟(IDF)发布了全球第八版糖尿病地图.根据IDF数据显示,全球糖尿病成人患者达4.25亿',
           author: '迈德医疗',
@@ -48,6 +53,12 @@ class Page extends Component {
         }, {
           name: '用户5',
           time: '2017-12-04 20:57:58'
+        }, {
+          name: '用户6',
+          time: '2017-12-04 20:57:58'
+        }, {
+          name: '用户7',
+          time: '2017-12-04 20:57:58'
         }]
       }
     }
@@ -56,10 +67,10 @@ class Page extends Component {
   render () {
     return (
       <Layout.Row gutter='40'>
-        <Layout.Col span='18'>
+        <Layout.Col span='17'>
           <ArticleList title={this.state.articleList.title} data={this.state.articleList.data} />
         </Layout.Col>
-        <Layout.Col span='6'>
+        <Layout.Col span='7'>
           <UserList title={this.state.userList.title} data={this.state.userList.data} />
         </Layout.Col>
       </Layout.Row>

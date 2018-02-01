@@ -44,11 +44,11 @@ class Page extends Component {
   render () {
     return (
       <div>
-        <Layout.Row gutter='40'>
-          <Layout.Col span='14'>
+        <Layout.Row gutter='30'>
+          <Layout.Col span='13'>
             <ArticleList title={this.state.articleList.title} data={this.state.articleList.data} />
           </Layout.Col>
-          <Layout.Col span='10'>
+          <Layout.Col span='11'>
             <WordCloud title='热词' data={this.state.wordCloudData} />
           </Layout.Col>
         </Layout.Row>
@@ -59,25 +59,25 @@ class Page extends Component {
             <NumberCard title='总分享量' number='123万' percentage='+20%' />
           </Layout.Col>
           <Layout.Col span='18'>
-            <LineChart />
+            <LineChart height='400px' />
           </Layout.Col>
           <Layout.Col span='6'>
             <NumberCard title='总阅读量' number='213万' percentage='+10%' />
           </Layout.Col>
           <Layout.Col span='18'>
-            <LineChart />
+            <LineChart height='400px' />
           </Layout.Col>
           <Layout.Col span='6'>
             <NumberCard title='总点赞量' number='321万' percentage='+6%' />
           </Layout.Col>
           <Layout.Col span='18'>
-            <LineChart />
+            <LineChart height='400px' />
           </Layout.Col>
           <Layout.Col span='6'>
             <NumberCard title='总覆盖用户量' number='870万' percentage='+20%' />
           </Layout.Col>
           <Layout.Col span='18'>
-            <LineChart />
+            <LineChart height='400px' />
           </Layout.Col>
         </Layout.Row>
       </div>
