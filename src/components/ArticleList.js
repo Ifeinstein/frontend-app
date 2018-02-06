@@ -32,9 +32,9 @@ class TopNavbar extends Component {
                   <img src={logo} alt='logo' />
                 </Layout.Col>
                 <Layout.Col className='article-content' span='18'>
-                  <p className='title'>{e.title}<span className='info'>&emsp;{e.author}&emsp;{e.time}</span></p>
-                  <p className='brief'>{e.brief}</p>
-
+                  <p className='title'>{e.title}</p>
+                  <p className='brief'>{e.introduction}</p>
+                  <p className='info'>{e.writerName}&emsp;{e.time}</p>
                   <div>
                     <Button type='primary' size='mini'>热度：92</Button>
                     <Button type='warning' size='mini'>传播路径分析</Button>

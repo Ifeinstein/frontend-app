@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Layout } from 'element-react'
+import axios from 'axios'
 import ArticleList from '../components/ArticleList'
 import UserList from '../components/UserList'
 
@@ -9,59 +10,46 @@ class Page extends Component {
     this.state = {
       articleList: {
         title: '最新内容',
-        data: [{
-          title: '糖尿病大时代',
-          brief: '近日,国际糖尿病联盟(IDF)发布了全球第八版糖尿病地图.根据IDF数据显示,全球糖尿病成人患者达4.25亿',
-          author: '迈德医疗',
-          time: '2017-12-04 20:57:58'
-        }, {
-          title: '糖尿病大时代2',
-          brief: '近日,国际糖尿病联盟(IDF)发布了全球第八版糖尿病地图.根据IDF数据显示,全球糖尿病成人患者达4.25亿',
-          author: '迈德医疗',
-          time: '2017-12-04 20:57:58'
-        }, {
-          title: '糖尿病大时代3',
-          brief: '近日,国际糖尿病联盟(IDF)发布了全球第八版糖尿病地图.根据IDF数据显示,全球糖尿病成人患者达4.25亿',
-          author: '迈德医疗',
-          time: '2017-12-04 20:57:58'
-        }, {
-          title: '糖尿病大时代4',
-          brief: '近日,国际糖尿病联盟(IDF)发布了全球第八版糖尿病地图.根据IDF数据显示,全球糖尿病成人患者达4.25亿',
-          author: '迈德医疗',
-          time: '2017-12-04 20:57:58'
-        }, {
-          title: '糖尿病大时代5',
-          brief: '近日,国际糖尿病联盟(IDF)发布了全球第八版糖尿病地图.根据IDF数据显示,全球糖尿病成人患者达4.25亿',
-          author: '迈德医疗',
-          time: '2017-12-04 20:57:58'
-        }]
+        data: []
       },
       userList: {
         title: '最新活跃用户',
-        data: [{
-          name: '用户1',
-          time: '2017-12-04 20:57:58'
-        }, {
-          name: '用户2',
-          time: '2017-12-04 20:57:58'
-        }, {
-          name: '用户3',
-          time: '2017-12-04 20:57:58'
-        }, {
-          name: '用户4',
-          time: '2017-12-04 20:57:58'
-        }, {
-          name: '用户5',
-          time: '2017-12-04 20:57:58'
-        }, {
-          name: '用户6',
-          time: '2017-12-04 20:57:58'
-        }, {
-          name: '用户7',
-          time: '2017-12-04 20:57:58'
-        }]
+        data: []
       }
     }
+  }
+
+  componentDidMount () {
+    function getNews () {
+      return axios({
+        method: 'get',
+        url: '/get_latest_news/5'
+      })
+    }
+
+    function getUsers () {
+      return axios({
+        method: 'get',
+        url: '/get_latest_users/6'
+      })
+    }
+
+    axios.all([getNews(), getUsers()])
+      .then(axios.spread((articles, users) => {
+        this.setState({
+          articleList: {
+            title: '最新内容',
+            data: articles.data
+          },
+          userList: {
+            title: '最新活跃用户',
+            data: users.data
+          }
+        })
+      }))
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   render () {

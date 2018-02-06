@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.17.1",
     "crypto-random-string": "^1.0.0",
     "echarts": "^4.0.2",
     "echarts-wordcloud": "^1.1.3",

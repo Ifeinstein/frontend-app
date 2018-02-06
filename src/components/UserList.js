@@ -32,8 +32,8 @@ class TopNavbar extends Component {
                   <img src={logo} alt='logo' />
                 </Layout.Col>
                 <Layout.Col span='18'>
-                  <p className='name'>{e.name}</p>
-                  <p>{e.time}</p>
+                  <p className='name'>{e.viewerName}</p>
+                  <p className='time'>{e.updatedAt}</p>
                 </Layout.Col>
               </Layout.Row>
               <Layout.Row>

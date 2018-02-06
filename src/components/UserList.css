@@ -16,6 +16,9 @@
   font-weight: bolder;
   font-size: 1.1rem;
 }
+.user-card .el-card__body .time {
+  font-size: 0.8rem;
+}
 .user-card .el-card__body p {
   margin-bottom: 0;
 }
