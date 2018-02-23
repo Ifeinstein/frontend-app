@@ -23,14 +23,14 @@ class Page extends Component {
     function getNews () {
       return axios({
         method: 'get',
-        url: '/get_latest_news/5'
+        url: 'http://127.0.0.1:8000/get_latest_news/5'
       })
     }
 
     function getUsers () {
       return axios({
         method: 'get',
-        url: '/get_latest_users/6'
+        url: 'http://127.0.0.1:8000/get_latest_users/8'
       })
     }
 

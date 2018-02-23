@@ -8,7 +8,8 @@ class Chart extends Component {
   // constructor (props) {
   //   super(props)
   // },
-  componentDidMount () {
+
+  showChart () {
     this.myChart = echarts.init(this.chartDom)
     this.myChart.setOption({
       tooltip: {},
@@ -43,10 +44,6 @@ class Chart extends Component {
         ]
       }]
     })
-  }
-
-  resizeChart () {
-    this.myChart.resize()
   }
 
   render () {

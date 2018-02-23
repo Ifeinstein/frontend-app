@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Layout } from 'element-react'
 import UserList from '../components/UserList'
+import axios from 'axios/index'
 
 class Page extends Component {
   constructor () {
@@ -8,26 +9,31 @@ class Page extends Component {
     this.state = {
       userList: {
         title: '最新活跃用户',
-        data: [{
-          name: '用户1',
-          time: '2017-12-04 20:57:58'
-        }, {
-          name: '用户2',
-          time: '2017-12-04 20:57:58'
-        }, {
-          name: '用户3',
-          time: '2017-12-04 20:57:58'
-        }, {
-          name: '用户4',
-          time: '2017-12-04 20:57:58'
-        }, {
-          name: '用户5',
-          time: '2017-12-04 20:57:58'
-        }]
+        data: []
       }
     }
   }
+  componentDidMount () {
+    function getUsers () {
+      return axios({
+        method: 'get',
+        url: 'http://127.0.0.1:8000/get_latest_users/8'
+      })
+    }
 
+    axios.all([getUsers()])
+      .then(axios.spread((users) => {
+        this.setState({
+          userList: {
+            title: '最新活跃用户',
+            data: users.data
+          }
+        })
+      }))
+      .catch((error) => {
+        console.log(error)
+      })
+  }
   render () {
     return (
       <Layout.Row>

@@ -3,6 +3,7 @@ import { Layout } from 'element-react'
 import UserList from '../components/UserList'
 import UserMapScatterBarChart from '../components/UserMapScatterBarChart'
 import UserNumberBarChart from '../components/UserNumberBarChart'
+import axios from 'axios/index'
 
 class Page extends Component {
   constructor () {
@@ -10,20 +11,42 @@ class Page extends Component {
     this.state = {
       userList: {
         title: '最新活跃用户',
-        data: [{
-          name: '用户1',
-          time: '2017-12-04 20:57:58'
-        }, {
-          name: '用户2',
-          time: '2017-12-04 20:57:58'
-        }, {
-          name: '用户3',
-          time: '2017-12-04 20:57:58'
-        }]
+        data: []
       }
     }
   }
+  componentDidMount () {
+    function getNews () {
+      return axios({
+        method: 'get',
+        url: 'http://127.0.0.1:8000/get_latest_news/3'
+      })
+    }
 
+    function getUsers () {
+      return axios({
+        method: 'get',
+        url: 'http://127.0.0.1:8000/get_latest_users'
+      })
+    }
+
+    axios.all([getNews(), getUsers()])
+      .then(axios.spread((articles, users) => {
+        this.setState({
+          articleList: {
+            title: '最新内容',
+            data: articles.data
+          },
+          userList: {
+            title: '最新活跃用户',
+            data: users.data
+          }
+        })
+      }))
+      .catch((error) => {
+        console.log(error)
+      })
+  }
   render () {
     return (
       <div>

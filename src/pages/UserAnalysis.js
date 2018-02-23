@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import { Layout, Tabs } from 'element-react'
 
 import UserInfo from '../components/UserInfo'
-import LineChart from '../components/LineChart'
+import UserForceLineChart from '../components/UserForceLineChart'
 import UserVitalityGaugeChart from '../components/UserVitalityGaugeChart'
 import UserForceRadarChart from '../components/UserForceRadarChart'
 import UserLog from '../components/UserLog'
+import axios from 'axios/index'
 
 class Page extends Component {
   constructor () {
@@ -13,38 +14,66 @@ class Page extends Component {
     this.state = {
       articleList: {
         title: '最新内容',
-        data: [{
-          title: '糖尿病大时代',
-          brief: '近日,国际糖尿病联盟(IDF)发布了全球第八版糖尿病地图.根据IDF数据显示,全球糖尿病成人患者达4.25亿',
-          author: '迈德医疗',
-          time: '2017-12-04 20:57:58'
-        }, {
-          title: '糖尿病大时代2',
-          brief: '近日,国际糖尿病联盟(IDF)发布了全球第八版糖尿病地图.根据IDF数据显示,全球糖尿病成人患者达4.25亿',
-          author: '迈德医疗',
-          time: '2017-12-04 20:57:58'
-        }, {
-          title: '糖尿病大时代3',
-          brief: '近日,国际糖尿病联盟(IDF)发布了全球第八版糖尿病地图.根据IDF数据显示,全球糖尿病成人患者达4.25亿',
-          author: '迈德医疗',
-          time: '2017-12-04 20:57:58'
-        }, {
-          title: '糖尿病大时代4',
-          brief: '近日,国际糖尿病联盟(IDF)发布了全球第八版糖尿病地图.根据IDF数据显示,全球糖尿病成人患者达4.25亿',
-          author: '迈德医疗',
-          time: '2017-12-04 20:57:58'
-        }]
+        data: []
+      },
+      logs: {
+        logs: '',
+        data: []
       }
     }
     this.getTabChart = this.getTabChart.bind(this)
   }
 
+  componentDidMount () {
+    function getNews () {
+      return axios({
+        method: 'get',
+        url: 'http://127.0.0.1:8000/get_latest_news/5'
+      })
+    }
+
+    function getUsers () {
+      return axios({
+        method: 'get',
+        url: 'http://127.0.0.1:8000/get_latest_users/8'
+      })
+    }
+
+    let getLogs = () => {
+      return axios({
+        method: 'get',
+        url: 'http://127.0.0.1:8000/get_user_log/' + this.props.match.params.id + '/5'
+      })
+    }
+
+    axios.all([getNews(), getUsers(), getLogs()])
+      .then(axios.spread((articles, users, logs) => {
+        this.setState({
+          articleList: {
+            title: '最新内容',
+            data: articles.data
+          },
+          userList: {
+            title: '最新活跃用户',
+            data: users.data
+          },
+          logs: {
+            title: '用户行为日志',
+            data: logs.data
+          }
+        })
+      }))
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
   getTabChart (tab) {
     console.log(tab)
     if (tab.props.name === '2') {
-      this.refs.forceRadarChart.resizeChart()
-      this.refs.forceLineChart.resizeChart()
-      this.refs.spreadLineChart.resizeChart()
+      this.refs.forceRadarChart.showChart()
+      this.refs.forceLineChart.showChart()
+      this.refs.spreadLineChart.showChart()
     }
   }
 
@@ -64,7 +93,7 @@ class Page extends Component {
               <UserVitalityGaugeChart height='400px' />
             </Layout.Col>
             <Layout.Col span='12'>
-              <LineChart height='400px' />
+              <UserForceLineChart height='400px' />
             </Layout.Col>
           </Tabs.Pane>
           <Tabs.Pane label='传播影响力分析' name='2'>
@@ -72,14 +101,14 @@ class Page extends Component {
               <UserForceRadarChart ref='forceRadarChart' height='400px' />
             </Layout.Col>
             <Layout.Col span='12'>
-              <LineChart ref='forceLineChart' height='400px' />
+              <UserForceLineChart ref='forceLineChart' height='400px' />
             </Layout.Col>
             <Layout.Col span='24'>
-              <LineChart ref='spreadLineChart' height='400px' />
+              <UserForceLineChart ref='spreadLineChart' height='400px' />
             </Layout.Col>
           </Tabs.Pane>
           <Tabs.Pane label='用户行为日志' name='3'>
-            <UserLog title='用户行为日志' data={this.state.articleList.data} />
+            <UserLog title='用户行为日志' data={this.state.logs.data} />
           </Tabs.Pane>
         </Tabs>
       </div>

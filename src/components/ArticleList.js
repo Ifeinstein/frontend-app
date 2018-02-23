@@ -6,7 +6,7 @@ import { Card, Button, Layout, Pagination } from 'element-react'
 import './ArticleList.css'
 import logo from '../logo.svg'
 
-class TopNavbar extends Component {
+class ArticleList extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -25,7 +25,7 @@ class TopNavbar extends Component {
         <h2>{this.props.title}</h2>
         <hr />
         {this.props.data.map((e) => (
-          <Link to={'article/' + e.title} key={this.props.data.indexOf(e)}>
+          <Link to={'article/' + e.newsId} key={e.newsId}>
             <Card className='article-card'>
               <Layout.Row type='flex' gutter='20'>
                 <Layout.Col className='article-pic' span='6'>
@@ -34,7 +34,7 @@ class TopNavbar extends Component {
                 <Layout.Col className='article-content' span='18'>
                   <p className='title'>{e.title}</p>
                   <p className='brief'>{e.introduction}</p>
-                  <p className='info'>{e.writerName}&emsp;{e.time}</p>
+                  <p className='info'>{e.writerName}&emsp;{e.createdAt}</p>
                   <div>
                     <Button type='primary' size='mini'>热度：92</Button>
                     <Button type='warning' size='mini'>传播路径分析</Button>
@@ -59,9 +59,9 @@ class TopNavbar extends Component {
   }
 }
 
-TopNavbar.propTypes = {
+ArticleList.propTypes = {
   title: PropTypes.string,
   data: PropTypes.array
 }
 
-export default TopNavbar
+export default ArticleList

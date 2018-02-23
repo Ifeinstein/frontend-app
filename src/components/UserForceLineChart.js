@@ -4,14 +4,12 @@ import echarts from 'echarts/lib/echarts'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/component/tooltip'
 
-class Chart extends Component {
-  constructor () {
-    super()
-    this.state = {
-      data: []
-    }
-  }
-  componentDidMount () {
+class WordCloud extends Component {
+  // constructor (props) {
+  //   super(props)
+  // },
+
+  showChart () {
     this.myChart = echarts.init(this.chartDom)
     this.myChart.setOption({
       grid: {
@@ -34,7 +32,6 @@ class Chart extends Component {
     })
   }
 
-
   render () {
     return (
       <div ref={(chartDom) => { this.chartDom = chartDom }} style={{'height': this.props.height || '200px'}} />
@@ -42,8 +39,8 @@ class Chart extends Component {
   }
 }
 
-Chart.propTypes = {
+WordCloud.propTypes = {
   height: PropTypes.string
 }
 
-export default Chart
+export default WordCloud
