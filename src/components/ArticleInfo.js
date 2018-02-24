@@ -19,7 +19,7 @@ class ArticleInfo extends Component {
 
 ArticleInfo.propTypes = {
   title: PropTypes.string,
-  brief: PropTypes.string,
+  brief: PropTypes.string
 }
 
 export default ArticleInfo

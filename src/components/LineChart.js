@@ -5,13 +5,15 @@ import 'echarts/lib/chart/line'
 import 'echarts/lib/component/tooltip'
 
 class Chart extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
-      data: []
+      name: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      value: [820, 932, 901, 934, 1290, 1330, 1320]
     }
   }
-  componentDidMount () {
+
+  showChart () {
     this.myChart = echarts.init(this.chartDom)
     this.myChart.setOption({
       grid: {
@@ -22,18 +24,17 @@ class Chart extends Component {
       tooltip: {},
       xAxis: {
         type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        data: this.props.name || this.state.name
       },
       yAxis: {
         type: 'value'
       },
       series: [{
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        data: this.props.value || this.state.value,
         type: 'line'
       }]
     })
   }
-
 
   render () {
     return (
@@ -43,7 +44,9 @@ class Chart extends Component {
 }
 
 Chart.propTypes = {
-  height: PropTypes.string
+  height: PropTypes.string,
+  name: PropTypes.array,
+  value: PropTypes.array
 }
 
 export default Chart

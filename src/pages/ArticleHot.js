@@ -23,9 +23,22 @@ class Page extends Component {
         title: '最新内容',
         data: []
       },
+      transmitNumber: {
+        name: [],
+        value: []
+      },
+      readNumber: {
+        name: [],
+        value: []
+      },
+      userNumber: {
+        name: [],
+        value: []
+      },
       wordCloudData: testData
     }
   }
+
   componentDidMount () {
     function getNews () {
       return axios({
@@ -81,14 +94,32 @@ class Page extends Component {
 
     axios.all([getTransmitNumber(), getReadNumber(), getUserNumber()])
       .then(axios.spread((transmitNumber, readNumber, userNumber) => {
-        transmitNumber = transmitNumber.map()
-        this.setState({//  todo
+        function parseNumber (e) {
+          return [e.map((val) => val[0]), e.map((val) => val[1])]
+        }
+        this.setState({
+          transmitNumber: {
+            name: parseNumber(transmitNumber.data)[0],
+            value: parseNumber(transmitNumber.data)[1]
+          },
+          readNumber: {
+            name: parseNumber(readNumber.data)[0],
+            value: parseNumber(readNumber.data)[1]
+          },
+          userNumber: {
+            name: parseNumber(userNumber.data)[0],
+            value: parseNumber(userNumber.data)[1]
+          }
         })
+        this.refs.transmitNumber.showChart()
+        this.refs.readNumber.showChart()
+        this.refs.userNumber.showChart()
       }))
       .catch((error) => {
         console.log(error)
       })
   }
+
   render () {
     return (
       <div>
@@ -107,13 +138,13 @@ class Page extends Component {
             <NumberCard title='总分享量' number='123万' percentage='+20%' />
           </Layout.Col>
           <Layout.Col span='18'>
-            <LineChart height='400px' />
+            <LineChart ref='transmitNumber' name={this.state.transmitNumber.name} value={this.state.transmitNumber.value} height='400px' />
           </Layout.Col>
           <Layout.Col span='6'>
             <NumberCard title='总阅读量' number='213万' percentage='+10%' />
           </Layout.Col>
           <Layout.Col span='18'>
-            <LineChart height='400px' />
+            <LineChart ref='readNumber' name={this.state.readNumber.name} value={this.state.readNumber.value} height='400px' />
           </Layout.Col>
           <Layout.Col span='6'>
             <NumberCard title='总点赞量' number='321万' percentage='+6%' />
@@ -125,7 +156,7 @@ class Page extends Component {
             <NumberCard title='总覆盖用户量' number='870万' percentage='+20%' />
           </Layout.Col>
           <Layout.Col span='18'>
-            <LineChart height='400px' />
+            <LineChart ref='userNumber' name={this.state.userNumber.name} value={this.state.userNumber.value} height='400px' />
           </Layout.Col>
         </Layout.Row>
       </div>
