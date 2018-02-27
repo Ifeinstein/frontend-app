@@ -10,14 +10,6 @@ class Page extends Component {
   constructor () {
     super()
 
-    let testData = []
-    for (let i = 0; i < 100; i++) {
-      testData.push({
-        name: 'test',
-        value: Math.ceil(Math.random() * 10000)
-      })
-    }
-
     this.state = {
       articleList: {
         title: '最新内容',
@@ -35,7 +27,7 @@ class Page extends Component {
         name: [],
         value: []
       },
-      wordCloudData: testData
+      wordCloudData: []
     }
   }
 
@@ -44,13 +36,6 @@ class Page extends Component {
       return axios({
         method: 'get',
         url: 'http://127.0.0.1:8000/get_latest_news/3'
-      })
-    }
-
-    function getUsers () {
-      return axios({
-        method: 'get',
-        url: 'http://127.0.0.1:8000/get_latest_users'
       })
     }
 
@@ -75,18 +60,23 @@ class Page extends Component {
       })
     }
 
-    axios.all([getNews(), getUsers()])
-      .then(axios.spread((articles, users) => {
+    function getWordCloud () {
+      return axios({
+        method: 'get',
+        url: 'http://127.0.0.1:8000/get_word_cloud'
+      })
+    }
+
+    axios.all([getNews(), getWordCloud()])
+      .then(axios.spread((articles, wordCloud) => {
         this.setState({
           articleList: {
             title: '最新内容',
             data: articles.data
           },
-          userList: {
-            title: '最新活跃用户',
-            data: users.data
-          }
+          wordCloudData: wordCloud.data.map(val => ({name: val[0], value: val[1]}))
         })
+        this.refs.wordCloud.showChart()
       }))
       .catch((error) => {
         console.log(error)
@@ -97,6 +87,7 @@ class Page extends Component {
         function parseNumber (e) {
           return [e.map((val) => val[0]), e.map((val) => val[1])]
         }
+
         this.setState({
           transmitNumber: {
             name: parseNumber(transmitNumber.data)[0],
@@ -128,7 +119,7 @@ class Page extends Component {
             <ArticleList title={this.state.articleList.title} data={this.state.articleList.data} />
           </Layout.Col>
           <Layout.Col span='11'>
-            <WordCloud title='热词' data={this.state.wordCloudData} />
+            <WordCloud ref='wordCloud' title='热词' data={this.state.wordCloudData} />
           </Layout.Col>
         </Layout.Row>
         <Layout.Row>
@@ -138,25 +129,28 @@ class Page extends Component {
             <NumberCard title='总分享量' number='123万' percentage='+20%' />
           </Layout.Col>
           <Layout.Col span='18'>
-            <LineChart ref='transmitNumber' name={this.state.transmitNumber.name} value={this.state.transmitNumber.value} height='400px' />
+            <LineChart ref='transmitNumber' name={this.state.transmitNumber.name}
+              value={this.state.transmitNumber.value} height='400px' />
           </Layout.Col>
           <Layout.Col span='6'>
             <NumberCard title='总阅读量' number='213万' percentage='+10%' />
           </Layout.Col>
           <Layout.Col span='18'>
-            <LineChart ref='readNumber' name={this.state.readNumber.name} value={this.state.readNumber.value} height='400px' />
+            <LineChart ref='readNumber' name={this.state.readNumber.name} value={this.state.readNumber.value}
+              height='400px' />
           </Layout.Col>
-          <Layout.Col span='6'>
-            <NumberCard title='总点赞量' number='321万' percentage='+6%' />
-          </Layout.Col>
-          <Layout.Col span='18'>
-            <LineChart height='400px' />
-          </Layout.Col>
+          {/*<Layout.Col span='6'>*/}
+          {/*<NumberCard title='总点赞量' number='321万' percentage='+6%' />*/}
+          {/*</Layout.Col>*/}
+          {/*<Layout.Col span='18'>*/}
+          {/*<LineChart height='400px' />*/}
+          {/*</Layout.Col>*/}
           <Layout.Col span='6'>
             <NumberCard title='总覆盖用户量' number='870万' percentage='+20%' />
           </Layout.Col>
           <Layout.Col span='18'>
-            <LineChart ref='userNumber' name={this.state.userNumber.name} value={this.state.userNumber.value} height='400px' />
+            <LineChart ref='userNumber' name={this.state.userNumber.name} value={this.state.userNumber.value}
+              height='400px' />
           </Layout.Col>
         </Layout.Row>
       </div>

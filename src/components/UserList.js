@@ -25,7 +25,10 @@ class TopNavbar extends Component {
         <h2>{this.props.title}</h2>
         <hr />
         {this.props.data.map((e) => (
-          <Link to={'user/' + e.viewerId} key={e.viewerId}>
+          <Link to={{
+            pathname: 'user/' + e.viewerId,
+            state: e
+          }} key={e.viewerId}>
             <Card className='user-card'>
               <Layout.Row type='flex'>
                 <Layout.Col className='user-pic' span='6'>

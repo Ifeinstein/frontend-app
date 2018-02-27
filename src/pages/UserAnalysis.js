@@ -6,20 +6,22 @@ import UserForceLineChart from '../components/UserForceLineChart'
 import UserVitalityGaugeChart from '../components/UserVitalityGaugeChart'
 import UserForceRadarChart from '../components/UserForceRadarChart'
 import UserLog from '../components/UserLog'
+import PropTypes from 'prop-types'
 import axios from 'axios/index'
 
 class Page extends Component {
   constructor () {
     super()
     this.state = {
-      articleList: {
-        title: '最新内容',
+      userInfo: {
+        name: '最新内容',
         data: []
       },
       logs: {
         logs: '',
         data: []
-      }
+      },
+      userArea: []
     }
     this.getTabChart = this.getTabChart.bind(this)
   }
@@ -83,7 +85,7 @@ class Page extends Component {
         <br />
         <Layout.Row>
           <Layout.Col span='24'>
-            <UserInfo title='姓名' brief='数据' />
+            <UserInfo title={this.props.location.state.viewerName} brief={this.props.location.state.updatedAt} />
           </Layout.Col>
         </Layout.Row>
         <br />
@@ -114,6 +116,11 @@ class Page extends Component {
       </div>
     )
   }
+}
+
+Page.propTypes = {
+  match: PropTypes.object,
+  location: PropTypes.object
 }
 
 export default Page

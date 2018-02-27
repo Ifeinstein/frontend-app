@@ -12,14 +12,19 @@ class Page extends Component {
       userList: {
         title: '最新活跃用户',
         data: []
+      },
+      userNumber: {
+        name: [],
+        value: []
       }
     }
   }
+
   componentDidMount () {
-    function getNews () {
+    function getUserNumber () {
       return axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/get_latest_news/3'
+        url: 'http://127.0.0.1:8000/get_user_number'
       })
     }
 
@@ -30,23 +35,37 @@ class Page extends Component {
       })
     }
 
-    axios.all([getNews(), getUsers()])
-      .then(axios.spread((articles, users) => {
+    function getUserArea () {
+      return axios({
+        method: 'get',
+        url: 'http://127.0.0.1:8000/get_user_area'
+      })
+    }
+
+    axios.all([getUserNumber(), getUsers(), getUserArea()])
+      .then(axios.spread((userNumber, users, userArea) => {
+        function parseNumber (e) {
+          return [e.map((val) => val[0]), e.map((val) => val[1])]
+        }
         this.setState({
-          articleList: {
-            title: '最新内容',
-            data: articles.data
+          userNumber: {
+            name: parseNumber(userNumber.data)[0],
+            value: parseNumber(userNumber.data)[1]
           },
           userList: {
             title: '最新活跃用户',
             data: users.data
-          }
+          },
+          userArea: userArea.data
         })
+        this.refs.userNumberBarChart.showChart()
+        this.refs.userAreaChart.showChart()
       }))
       .catch((error) => {
         console.log(error)
       })
   }
+
   render () {
     return (
       <div>
@@ -59,12 +78,13 @@ class Page extends Component {
           <Layout.Col span='24'>
             <h2>用户地域分布</h2>
             <hr />
-            <UserMapScatterBarChart height='600px' />
+            <UserMapScatterBarChart ref='userAreaChart' data={this.state.userArea} height='600px' />
           </Layout.Col>
           <Layout.Col span='24'>
             <h2>用户数量变化趋势</h2>
             <hr />
-            <UserNumberBarChart height='600px' />
+            <UserNumberBarChart ref='userNumberBarChart' name={this.state.userNumber.name}
+              value={this.state.userNumber.value} height='600px' />
           </Layout.Col>
         </Layout.Row>
       </div>

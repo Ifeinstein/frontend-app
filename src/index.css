@@ -41,3 +41,6 @@ h2 {
 .el-menu .selected > .el-menu-item {
   color: #20a0ff !important;
 }
+.el-table .cell {
+  white-space: nowrap;
+}

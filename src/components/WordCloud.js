@@ -8,7 +8,7 @@ class WordCloud extends Component {
   // constructor (props) {
   //   super(props)
   // },
-  componentDidMount () {
+  showChart () {
     let chart = echarts.init(this.chartDom)
     chart.setOption({
       title: {text: ''},
@@ -19,12 +19,12 @@ class WordCloud extends Component {
         // maskImage: maskImage,
         left: 'center',
         top: 'center',
-        width: '90%',
+        width: '100%',
         height: '100%',
         right: null,
         bottom: null,
-        sizeRange: [12, 60],
-        rotationRange: [-90, 90],
+        sizeRange: [8, 60],
+        rotationRange: [0, 0],
         rotationStep: 45,
         gridSize: 8,
         drawOutOfBound: false,

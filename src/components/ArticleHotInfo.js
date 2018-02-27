@@ -14,9 +14,9 @@ class ArticleHotInfo extends Component {
       } style={{textAlign: 'center'}}>
         <p>阅读量：{this.props.readNum}</p>
         <p>转发量：{this.props.forwardNum}</p>
-        <p>点赞量：{this.props.thumbsNum}</p>
+        {/*<p>点赞量：{this.props.thumbsNum}</p>*/}
         <p>覆盖用户数：{this.props.coverNum}</p>
-        <p>转发深度：{this.props.depth}</p>
+        {/*<p>转发深度：{this.props.depth}</p>*/}
       </Card>
     )
   }
@@ -26,9 +26,9 @@ ArticleHotInfo.propTypes = {
   hotNum: PropTypes.number,
   readNum: PropTypes.number,
   forwardNum: PropTypes.number,
-  thumbsNum: PropTypes.number,
-  coverNum: PropTypes.number,
-  depth: PropTypes.number
+  // thumbsNum: PropTypes.number,
+  coverNum: PropTypes.number
+  // depth: PropTypes.number
 }
 
 export default ArticleHotInfo

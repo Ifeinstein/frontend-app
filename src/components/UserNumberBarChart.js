@@ -5,48 +5,53 @@ import 'echarts/lib/chart/bar'
 import 'echarts/lib/component/tooltip'
 
 class Chart extends Component {
-  // constructor (props) {
-  //   super(props)
-  // },
-  componentDidMount () {
+  constructor (props) {
+    super(props)
+    this.state = {
+      name: [],
+      value: []
+    }
+  }
+
+  showChart () {
     let lineChart = echarts.init(this.chartDom)
     lineChart.setOption({
-    color: ['#3398DB'],
-    tooltip : {
+      color: ['#3398DB'],
+      tooltip: {
         trigger: 'axis',
-        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+          type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
         }
-    },
-    grid: {
+      },
+      grid: {
         left: '3%',
         right: '4%',
         bottom: '3%',
         containLabel: true
-    },
-    xAxis : [
+      },
+      xAxis: [
         {
-            type : 'category',
-            data : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-            axisTick: {
-                alignWithLabel: true
-            }
+          type: 'category',
+          data: this.props.name || this.state.name,
+          axisTick: {
+            alignWithLabel: true
+          }
         }
-    ],
-    yAxis : [
+      ],
+      yAxis: [
         {
-            type : 'value'
+          type: 'value'
         }
-    ],
-    series : [
+      ],
+      series: [
         {
-            name:'直接访问',
-            type:'bar',
-            barWidth: '60%',
-            data:[10, 52, 200, 334, 390, 330, 220]
+          name: '直接访问',
+          type: 'bar',
+          barWidth: '60%',
+          data: this.props.value || this.state.value
         }
-    ]
-})
+      ]
+    })
   }
 
   render () {
@@ -57,7 +62,9 @@ class Chart extends Component {
 }
 
 Chart.propTypes = {
-  height: PropTypes.string
+  height: PropTypes.string,
+  name: PropTypes.array,
+  value: PropTypes.array
 }
 
 export default Chart

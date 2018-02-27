@@ -25,7 +25,10 @@ class ArticleList extends Component {
         <h2>{this.props.title}</h2>
         <hr />
         {this.props.data.map((e) => (
-          <Link to={'article/' + e.newsId} key={e.newsId}>
+          <Link to={{
+            pathname: 'article/' + e.newsId,
+            state: e
+          }} key={e.newsId}>
             <Card className='article-card'>
               <Layout.Row type='flex' gutter='20'>
                 <Layout.Col className='article-pic' span='6'>
@@ -36,7 +39,7 @@ class ArticleList extends Component {
                   <p className='brief'>{e.introduction}</p>
                   <p className='info'>{e.writerName}&emsp;{e.createdAt}</p>
                   <div>
-                    <Button type='primary' size='mini'>热度：92</Button>
+                    <Button type='primary' size='mini'>热度分析</Button>
                     <Button type='warning' size='mini'>传播路径分析</Button>
                   </div>
                 </Layout.Col>

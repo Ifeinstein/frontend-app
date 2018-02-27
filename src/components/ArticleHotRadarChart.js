@@ -8,7 +8,7 @@ class ArticleHotRadarChart extends Component {
   // constructor (props) {
   //   super(props)
   // },
-  componentDidMount () {
+  showChart () {
     let lineChart = echarts.init(this.chartDom)
     lineChart.setOption({
       tooltip: {},
@@ -24,11 +24,10 @@ class ArticleHotRadarChart extends Component {
         },
         radius: '80%',
         indicator: [
-          {name: '阅读量', max: 6500},
-          {name: '转发量', max: 16000},
-          {name: '点赞量', max: 30000},
-          {name: '覆盖用户数', max: 38000},
-          {name: '转发深度', max: 10}
+          {name: '阅读量', max: 3000},
+          {name: '转发量', max: 1000},
+          {name: '覆盖用户数', max: 1000},
+          {name: '热度', max: 5}
         ]
       },
       series: [{
@@ -37,7 +36,7 @@ class ArticleHotRadarChart extends Component {
         // areaStyle: {normal: {}},
         data: [
           {
-            value: [4300, 10000, 18000, 15000, 5],
+            value: [this.props.readNum, this.props.forwardNum, this.props.coverNum, this.props.hotNum],
             name: '热度分析'
           }
         ]
@@ -53,7 +52,11 @@ class ArticleHotRadarChart extends Component {
 }
 
 ArticleHotRadarChart.propTypes = {
-  height: PropTypes.string
+  height: PropTypes.string,
+  readNum: PropTypes.number,
+  forwardNum: PropTypes.number,
+  coverNum: PropTypes.number,
+  hotNum: PropTypes.number,
 }
 
 export default ArticleHotRadarChart
