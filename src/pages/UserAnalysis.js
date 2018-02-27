@@ -71,7 +71,6 @@ class Page extends Component {
   }
 
   getTabChart (tab) {
-    console.log(tab)
     if (tab.props.name === '2') {
       this.refs.forceRadarChart.showChart()
       this.refs.forceLineChart.showChart()
