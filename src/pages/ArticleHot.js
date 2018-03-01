@@ -35,35 +35,35 @@ class Page extends Component {
     function getNews () {
       return axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/get_latest_news/3'
+        url: '/get_latest_news/3'
       })
     }
 
     function getTransmitNumber () {
       return axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/get_total_transmit_number'
+        url: '/get_total_transmit_number'
       })
     }
 
     function getReadNumber () {
       return axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/get_total_read_number'
+        url: '/get_total_read_number'
       })
     }
 
     function getUserNumber () {
       return axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/get_total_user_number'
+        url: '/get_total_user_number'
       })
     }
 
     function getWordCloud () {
       return axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/get_word_cloud'
+        url: '/get_word_cloud'
       })
     }
 

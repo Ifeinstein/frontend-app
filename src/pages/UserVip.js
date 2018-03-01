@@ -24,21 +24,21 @@ class Page extends Component {
     function getUserNumber () {
       return axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/get_user_number'
+        url: '/get_user_number'
       })
     }
 
     function getUsers () {
       return axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/get_latest_users/4'
+        url: '/get_latest_users/4'
       })
     }
 
     function getUserArea () {
       return axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/get_user_area'
+        url: '/get_user_area'
       })
     }
 

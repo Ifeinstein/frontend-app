@@ -35,28 +35,28 @@ class Page extends Component {
     let getUserActive = () => {
       return axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/get_user_active/' + this.props.match.params.id
+        url: '/get_user_active/' + this.props.match.params.id
       })
     }
 
     let getUserEffect = () => {
       return axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/get_now_user_effect/' + this.props.match.params.id
+        url: '/get_now_user_effect/' + this.props.match.params.id
       })
     }
 
     let getUserHistoryEffect = () => {
       return axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/get_history_user_effect/' + this.props.match.params.id
+        url: '/get_history_user_effect/' + this.props.match.params.id
       })
     }
 
     let getLogs = () => {
       return axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/get_user_log/' + this.props.match.params.id + '/5'
+        url: '/get_user_log/' + this.props.match.params.id + '/5'
       })
     }
 

@@ -48,31 +48,31 @@ class Page extends Component {
     let getNewsHot = () => {
       return axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/get_now_news_hot/' + this.props.match.params.id
+        url: '/get_now_news_hot/' + this.props.match.params.id
       })
     }
     let getHistoryNewsHot = () => {
       return axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/get_history_news_hot/' + this.props.match.params.id
+        url: '/get_history_news_hot/' + this.props.match.params.id
       })
     }
     let getTransmitTree = () => {
       return axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/get_transmit_tree/' + this.props.match.params.id
+        url: '/get_transmit_tree/' + this.props.match.params.id
       })
     }
     let getImportantPath = () => {
       return axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/find_important_path/' + this.props.match.params.id
+        url: '/find_important_path/' + this.props.match.params.id
       })
     }
     let getImportantUser = () => {
       return axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/find_important_user/' + this.props.match.params.id
+        url: '/find_important_user/' + this.props.match.params.id
       })
     }
 

@@ -17,7 +17,7 @@ class Page extends Component {
     function getUsers () {
       return axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/get_latest_users/7'
+        url: '/get_latest_users/7'
       })
     }
 
