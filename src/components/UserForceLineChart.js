@@ -4,10 +4,14 @@ import echarts from 'echarts/lib/echarts'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/component/tooltip'
 
-class WordCloud extends Component {
-  // constructor (props) {
-  //   super(props)
-  // },
+class Chart extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      name: [],
+      value: []
+    }
+  }
 
   showChart () {
     this.myChart = echarts.init(this.chartDom)
@@ -20,13 +24,13 @@ class WordCloud extends Component {
       tooltip: {},
       xAxis: {
         type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        data: this.props.name || this.state.name
       },
       yAxis: {
         type: 'value'
       },
       series: [{
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        data: this.props.data || this.state.value,
         type: 'line'
       }]
     })
@@ -39,8 +43,10 @@ class WordCloud extends Component {
   }
 }
 
-WordCloud.propTypes = {
-  height: PropTypes.string
+Chart.propTypes = {
+  height: PropTypes.string,
+  name: PropTypes.array,
+  data: PropTypes.array
 }
 
-export default WordCloud
+export default Chart

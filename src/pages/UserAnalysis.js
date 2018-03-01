@@ -1,43 +1,55 @@
 import React, { Component } from 'react'
-import { Layout, Tabs } from 'element-react'
+import { Layout, Tabs, Table } from 'element-react'
 
 import UserInfo from '../components/UserInfo'
 import UserForceLineChart from '../components/UserForceLineChart'
-import UserVitalityGaugeChart from '../components/UserVitalityGaugeChart'
+// import UserVitalityGaugeChart from '../components/UserVitalityGaugeChart'
 import UserForceRadarChart from '../components/UserForceRadarChart'
-import UserLog from '../components/UserLog'
 import PropTypes from 'prop-types'
 import axios from 'axios/index'
+import _ from 'lodash'
 
 class Page extends Component {
   constructor () {
     super()
     this.state = {
-      userInfo: {
-        name: '最新内容',
+      userActive: {
+        name: [],
+        data: []
+      },
+      userEffect: {},
+      userHistoryEffect: {
+        name: [],
         data: []
       },
       logs: {
-        logs: '',
-        data: []
-      },
-      userArea: []
+        title: '用户行为日志',
+        columns: [{}],
+        data: [{}]
+      }
     }
     this.getTabChart = this.getTabChart.bind(this)
   }
 
   componentDidMount () {
-    function getNews () {
+    let getUserActive = () => {
       return axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/get_latest_news/5'
+        url: 'http://127.0.0.1:8000/get_user_active/' + this.props.match.params.id
       })
     }
 
-    function getUsers () {
+    let getUserEffect = () => {
       return axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/get_latest_users/8'
+        url: 'http://127.0.0.1:8000/get_now_user_effect/' + this.props.match.params.id
+      })
+    }
+
+    let getUserHistoryEffect = () => {
+      return axios({
+        method: 'get',
+        url: 'http://127.0.0.1:8000/get_history_user_effect/' + this.props.match.params.id
       })
     }
 
@@ -48,22 +60,36 @@ class Page extends Component {
       })
     }
 
-    axios.all([getNews(), getUsers(), getLogs()])
-      .then(axios.spread((articles, users, logs) => {
+    axios.all([getUserActive(), getUserEffect(), getUserHistoryEffect(), getLogs()])
+      .then(axios.spread((userActive, userEffect, userHistoryEffect, logs) => {
         this.setState({
-          articleList: {
-            title: '最新内容',
-            data: articles.data
+          userActive: {
+            name: _.keys(userActive.data),
+            data: _.values(userActive.data)
           },
-          userList: {
-            title: '最新活跃用户',
-            data: users.data
+          userEffect: userEffect.data,
+          userHistoryEffect: {
+            name: _.keys(userHistoryEffect.data),
+            data: _.values(userHistoryEffect.data)
           },
           logs: {
             title: '用户行为日志',
+            columns: [
+              {
+                label: '浏览文章名',
+                prop: 'title'
+              }, {
+                label: '文章简介',
+                prop: 'introduction'
+              }, {
+                label: '时间',
+                prop: 'updatedAt'
+              }
+            ],
             data: logs.data
           }
         })
+        this.refs.userActiveLineChart.showChart()
       }))
       .catch((error) => {
         console.log(error)
@@ -73,8 +99,7 @@ class Page extends Component {
   getTabChart (tab) {
     if (tab.props.name === '2') {
       this.refs.forceRadarChart.showChart()
-      this.refs.forceLineChart.showChart()
-      this.refs.spreadLineChart.showChart()
+      this.refs.historyEffectChart.showChart()
     }
   }
 
@@ -90,26 +115,27 @@ class Page extends Component {
         <br />
         <Tabs type='border-card' activeName='1' onTabClick={this.getTabChart}>
           <Tabs.Pane label='活跃度分析' name='1'>
-            <Layout.Col span='12'>
-              <UserVitalityGaugeChart height='400px' />
-            </Layout.Col>
-            <Layout.Col span='12'>
-              <UserForceLineChart height='400px' />
+            <Layout.Col span='24'>
+              <UserForceLineChart ref='userActiveLineChart' name={this.state.userActive.name}
+                data={this.state.userActive.data} height='400px' />
             </Layout.Col>
           </Tabs.Pane>
           <Tabs.Pane label='传播影响力分析' name='2'>
             <Layout.Col span='12'>
-              <UserForceRadarChart ref='forceRadarChart' height='400px' />
+              <UserForceRadarChart data={this.state.userEffect} ref='forceRadarChart' height='400px' />
             </Layout.Col>
             <Layout.Col span='12'>
-              <UserForceLineChart ref='forceLineChart' height='400px' />
-            </Layout.Col>
-            <Layout.Col span='24'>
-              <UserForceLineChart ref='spreadLineChart' height='400px' />
+              <UserForceLineChart name={this.state.userHistoryEffect.name} data={this.state.userHistoryEffect.data}
+                ref='historyEffectChart' height='400px' />
             </Layout.Col>
           </Tabs.Pane>
           <Tabs.Pane label='用户行为日志' name='3'>
-            <UserLog title='用户行为日志' data={this.state.logs.data} />
+            <Table
+              style={{width: '100%'}}
+              columns={this.state.logs.columns}
+              data={this.state.logs.data}
+              border
+            />
           </Tabs.Pane>
         </Tabs>
       </div>

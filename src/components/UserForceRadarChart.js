@@ -7,7 +7,7 @@ import 'echarts/lib/component/tooltip'
 class Chart extends Component {
   // constructor (props) {
   //   super(props)
-  // },
+  // }
 
   showChart () {
     this.myChart = echarts.init(this.chartDom)
@@ -25,11 +25,11 @@ class Chart extends Component {
         },
         radius: '80%',
         indicator: [
-          {name: '阅读量', max: 6500},
-          {name: '转发量', max: 16000},
-          {name: '点赞量', max: 30000},
-          {name: '覆盖用户数', max: 38000},
-          {name: '转发深度', max: 10}
+          {name: '用户主动转发量', max: this.props.data.user_max_transmit_cnt + 3},
+          {name: '用户主动浏览量', max: this.props.data.user_max_pv_cnt + 3},
+          {name: '用户被转发量', max: this.props.data.user_avg_transmit_cnt * 3 + 3},
+          {name: '用户被浏览量', max: this.props.data.user_avg_pv_cnt * 3 + 3},
+          {name: '用户当前影响力值', max: 1}
         ]
       },
       series: [{
@@ -38,7 +38,13 @@ class Chart extends Component {
         // areaStyle: {normal: {}},
         data: [
           {
-            value: [4300, 10000, 18000, 15000, 5],
+            value: [
+              this.props.data.user_transmit_cnt,
+              this.props.data.user_pv_cnt,
+              this.props.data.user_re_transmit_cnt,
+              this.props.data.user_re_pv_cnt,
+              this.props.data.hot_value
+            ],
             name: '热度分析'
           }
         ]
@@ -54,7 +60,8 @@ class Chart extends Component {
 }
 
 Chart.propTypes = {
-  height: PropTypes.string
+  height: PropTypes.string,
+  data: PropTypes.object
 }
 
 export default Chart

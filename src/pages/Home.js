@@ -54,11 +54,11 @@ class Page extends Component {
 
   render () {
     return (
-      <Layout.Row gutter='40'>
-        <Layout.Col span='17'>
+      <Layout.Row gutter='30'>
+        <Layout.Col span='16'>
           <ArticleList title={this.state.articleList.title} data={this.state.articleList.data} />
         </Layout.Col>
-        <Layout.Col span='7'>
+        <Layout.Col span='8'>
           <UserList title={this.state.userList.title} data={this.state.userList.data} />
         </Layout.Col>
       </Layout.Row>

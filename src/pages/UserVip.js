@@ -31,7 +31,7 @@ class Page extends Component {
     function getUsers () {
       return axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/get_latest_users'
+        url: 'http://127.0.0.1:8000/get_latest_users/4'
       })
     }
 
@@ -73,18 +73,18 @@ class Page extends Component {
           <Layout.Col span='8'>
             <UserList title={this.state.userList.title} data={this.state.userList.data} />
           </Layout.Col>
+          <Layout.Col span='16'>
+            <h2>用户数量变化趋势</h2>
+            <hr />
+            <UserNumberBarChart ref='userNumberBarChart' name={this.state.userNumber.name}
+              value={this.state.userNumber.value} height='450px' />
+          </Layout.Col>
         </Layout.Row>
         <Layout.Row>
           <Layout.Col span='24'>
             <h2>用户地域分布</h2>
             <hr />
             <UserMapScatterBarChart ref='userAreaChart' data={this.state.userArea} height='600px' />
-          </Layout.Col>
-          <Layout.Col span='24'>
-            <h2>用户数量变化趋势</h2>
-            <hr />
-            <UserNumberBarChart ref='userNumberBarChart' name={this.state.userNumber.name}
-              value={this.state.userNumber.value} height='600px' />
           </Layout.Col>
         </Layout.Row>
       </div>

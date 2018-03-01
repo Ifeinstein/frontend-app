@@ -17,7 +17,7 @@ class Page extends Component {
     function getUsers () {
       return axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/get_latest_users/8'
+        url: 'http://127.0.0.1:8000/get_latest_users/7'
       })
     }
 
@@ -37,7 +37,7 @@ class Page extends Component {
   render () {
     return (
       <Layout.Row>
-        <Layout.Col span='8'>
+        <Layout.Col span='24'>
           <UserList title={this.state.userList.title} data={this.state.userList.data} />
         </Layout.Col>
       </Layout.Row>

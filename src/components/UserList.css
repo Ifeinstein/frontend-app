@@ -1,5 +1,7 @@
 .user-card {
-  margin: 0.5rem 0;
+  margin: 0.2rem 0.5rem;
+  max-width: 300px;
+  display: inline-block;
 }
 .user-card .el-card__body {
   padding: 0.5rem !important;
