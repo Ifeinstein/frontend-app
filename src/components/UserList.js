@@ -32,7 +32,7 @@ class TopNavbar extends Component {
             <Card className='user-card'>
               <Layout.Row type='flex'>
                 <Layout.Col className='user-pic' span='6'>
-                  <img src={logo} alt='logo' />
+                  <img src={e.viewerHeadImg} alt='headImg' />
                 </Layout.Col>
                 <Layout.Col span='18'>
                   <p className='name'>{e.viewerName}</p>

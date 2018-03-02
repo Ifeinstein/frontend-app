@@ -25,8 +25,8 @@ class Chart extends Component {
         },
         radius: '80%',
         indicator: [
-          {name: '用户主动转发量', max: this.props.data.user_max_transmit_cnt + 3},
-          {name: '用户主动浏览量', max: this.props.data.user_max_pv_cnt + 3},
+          {name: '用户主动转发量', max: this.props.data.user_max_transmit_cnt + 20},
+          {name: '用户主动浏览量', max: this.props.data.user_max_pv_cnt + 100},
           {name: '用户被转发量', max: this.props.data.user_avg_transmit_cnt * 3 + 3},
           {name: '用户被浏览量', max: this.props.data.user_avg_pv_cnt * 3 + 3},
           {name: '用户当前影响力值', max: 1}
